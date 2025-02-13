@@ -113,10 +113,8 @@ PS D:\weiterbildung\webentwicklung\MeinProjekt> git commit -m "Initialer Commit"
 ## Erstellen des Feature-Branches
 ***Wir haben einen Zweig mit diesem Befehl erstellt: „git checkout -b feature“***
 PS D:\weiterbildung\webentwicklung\MeinProjekt> git checkout -b feature
->>
 Switched to a new branch 'feature'
 PS D:\weiterbildung\webentwicklung\MeinProjekt> New-Item -Path utils/database.py -ItemType File -Force
->>
     Directory: D:\weiterbildung\webentwicklung\MeinProjekt\utils
 Mode                 	LastWriteTime         		Length Name
 ----                		 -------------         		------ ----
@@ -154,11 +152,8 @@ Wenn während des Zusammenführungsvorgangs ein Konflikt auftritt, warnt Sie Git
 
 Zunächst werden die Codes untersucht. Weil Git anzeigt, welche Zeilen innerhalb der Konfliktdateien Konflikte verursachen. Hier können Sie sehen, welcher iv´cerik welcher Zweig ist. Somit werden fehlerhafte Inhalte direkt gelöscht und die Zeilen gelöscht und protokolliert.
 
-<<<<<<< HEAD
-# Dies ist der Inhalt in Ihrem „Master“-Zweig
-=======
-# Inhalt in diesem "Feature"-Zweig
->>>>>>> Eigenschaften
+<<<<<<< HEAD "Dies ist der Inhalt in Ihrem „Master“-Zweig" ======= "Inhalt in diesem "Feature"-Zweig" >>>>>>> Eigenschaften
+
 Anschließend fügen wir es mit folgendem Befehl hinzu:
 git add <konflikt_Datei>             # Fügen Sie die Datei, bei der der Konflikt behoben wurde, zum Staging-Bereich hinzu
 git commit -m "Konflikt gelöst"     # Commit des Konflikts nach dessen Lösung
