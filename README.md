@@ -1,7 +1,5 @@
 # MeinProjekt - GitHub Repository Setup und Workflow
-
 ## Schritte zum Einrichten des GitHub-Repositorys
-
 1. Repository auf GitHub erstellt.
 Ich habe mich mit meinem Benutzernamen und Passwort bei meinem GitHub-Konto angemeldet. Klicken Sie oben rechts auf das „+“-Symbol und wählen Sie „Neues Repository“ aus. Ändern Sie den Namen des Repositorys in „MeinProjekt“ „Öffentlich“.
 Mit einem Klick auf den Button „Repository erstellen“ habe ich den Vorgang abgeschlossen.
@@ -21,6 +19,8 @@ Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 -a----        13.02.2025     14:44           3381 id_rsa
 -a----        13.02.2025     14:44            738 id_rsa.pub
+-a----        26.11.2024     11:17            304 known_hosts
+-a----        26.11.2024     11:15            112 known_hosts.old
 
 PS C:\Users\Nutzer> ssh-keygen -t rsa -b 4096 -C "mr.yesilyurt@gmail.com"
 Generating public/private rsa key pair.
