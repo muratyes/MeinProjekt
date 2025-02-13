@@ -59,16 +59,107 @@ Dann habe ich mit diesem Befehl „ssh-add C:\Users\Nutzer\.ssh\id_rsa“ meinen
 Zuletzt habe ich die SSH-Verbindung mit diesem Befehl getestet: „ssh -T git@github.com“
 
 Hallo, Muratyes! Sie haben sich erfolgreich authentifiziert, aber GitHub bietet keinen Shell-Zugriff.
+
 ## Lokales Klonen und Konfigurieren von Git
 
-- Repository wurde mit `git clone git@github.com:DeinBenutzername/MeinProjekt.git` geklont.
-- Git wurde mit `git config user.name` und `git config user.email` konfiguriert.
+PS C:\Users\Nutzer> d:
+PS D:\> cd weiterbildung/webentwicklung
+PS D:\weiterbildung\webentwicklung> git clone git@github.com:muratyes/MeinProjekt.git
+>>
+Cloning into 'MeinProjekt'...
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+***Während des Klonvorgangs habe ich diesen Fehler erhalten: Um diesen Fehler zu beheben, musste ich eine .ssh/Config-Datei erstellen. Diese Datei enthielt den Verbindungspfad.
+Hosten Sie github.com
+ Hostname github.com
+ Gehe zu Benutzer
+ IdentityFile C:/Users/Nutzer/.ssh/id_rsa ***
+
+PS D:\weiterbildung\webentwicklung> git clone https://github.com/muratyes/MeinProjekt.git
+>>
+Cloning into 'MeinProjekt'...
+warning: You appear to have cloned an empty repository.
+PS D:\weiterbildung\webentwicklung> cd MeinProjekt
+
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git config user.name "Murat Yesilyurt"
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git config user.email "mr.yesilyurt@gmail.com"
+PS D:\weiterbildung\webentwicklung\MeinProjekt> touch main.py
+touch : The term 'touch' is not recognized as the name of a cmdlet, function, script file, or operable program. Check t
+he spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ touch main.py
++ ~~~~~
+    + CategoryInfo          : ObjectNotFound: (touch:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+*** touch komutu Power shell kullanilmadigini ögrendim ve onun yerine „New-Item main.py -ItemType File“ komutu ile main.py olusturdum ***
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git add main.py
+fatal: pathspec 'main.py' did not match any files
+PS D:\weiterbildung\webentwicklung\MeinProjekt> New-Item main.py -ItemType File
+>>Directory: D:\weiterbildung\webentwicklung\MeinProjekt
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        13.02.2025     15:51              0 main.py
+
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git add main.py
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git commit -m "Initialer Commit"
+[main (root-commit) 740d50d] Initialer Commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 main.py
 
 ## Erstellen des Feature-Branches
+***Wir haben einen Zweig mit diesem Befehl erstellt: „git checkout -b feature“***
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git checkout -b feature
+>>
+Switched to a new branch 'feature'
+PS D:\weiterbildung\webentwicklung\MeinProjekt> New-Item -Path utils/database.py -ItemType File -Force
+>>
+    Directory: D:\weiterbildung\webentwicklung\MeinProjekt\utils
+Mode                 	LastWriteTime         		Length Name
+----                		 -------------         		------ ----
+-a----        		13.02.2025     15:54              	0 database.py
 
-- Ein neuer Branch "feature" wurde erstellt.
-- Eine neue Datei `utils/database.py` wurde hinzugefügt und committet.
+***Dann ich habe diese datei (utils/database.py) add und commit gemacht***
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git add utils/database.py
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git commit -m "Neue Funktion hinzugefügt"
+[feature 7121a2f] Neue Funktion hinzugefügt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 utils/database.py
 
 ## Mergen des Feature-Branches in den Master-Branch
 
-- Merge-Konflikt wurde beim Mergen des Feature-Branches in den Master-Branch gelöst.
+-PS D:\> cd weiterbildung/webentwicklung/MeinProjekt
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git checkout main # zum Hauptzweig wechseln
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git branch master # Erstellen Sie Ihren Master-Zweig
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git checkout master
+Switched to branch 'master' # zum Master-Zweig wechseln
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git add main.py
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git commit -m "Hauptdatei aktualisiert"
+*** Abschließend werden Sie aufgefordert, den Feature-Branch in den Master-Branch zu integrieren.***
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git merge feature
+PS D:\weiterbildung\webentwicklung\MeinProjekt> git branch
+  feature
+  main
+* master
+
+----------------------------------------------------------------------------------------------------------------------
+Konfliktlösung
+Wenn während des Zusammenführungsvorgangs ein Konflikt auftritt, warnt Sie Git vor dem Konflikt und kennzeichnet die widersprüchlichen Dateien. In dieser Situation:
+
+Zunächst werden die Codes untersucht. Weil Git anzeigt, welche Zeilen innerhalb der Konfliktdateien Konflikte verursachen. Hier können Sie sehen, welcher iv´cerik welcher Zweig ist. Somit werden fehlerhafte Inhalte direkt gelöscht und die Zeilen gelöscht und protokolliert.
+
+<<<<<<< HEAD
+# Dies ist der Inhalt in Ihrem „Master“-Zweig
+=======
+# Inhalt in diesem "Feature"-Zweig
+>>>>>>> Eigenschaften
+Anschließend fügen wir es mit folgendem Befehl hinzu:
+git add <konflikt_Datei>             # Fügen Sie die Datei, bei der der Konflikt behoben wurde, zum Staging-Bereich hinzu
+git commit -m "Konflikt gelöst"     # Commit des Konflikts nach dessen Lösung
+Nach dem Zusammenführungsvorgang werden die Änderungen übertragen.
