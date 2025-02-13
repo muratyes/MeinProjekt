@@ -17,7 +17,12 @@ ls ~/.ssh/
 ## 3. Schritte zum Erstellen eines SSH-Schlüssels
 
 - SSH-Schlüssel mit `ssh-keygen` erzeugt und zu GitHub hinzugefügt.
-Nach der Erstellung des Schlüssels habe ich den öffentlichen Schlüssel (id_rsa.pub) zu meinem GitHub-Konto unter SSH and GPG keys hinzugefügt.
+- ``Your identification has been saved in C:\Users\Nutzer/.ssh/id_rsa
+Your public key has been saved in C:\Users\Nutzer/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:5swrtG6lLS/hJwZN4copAEYVDSBUloJ4A+PYHgJiflo mr.yesilyurt@gmail.com ``
+Nach der Erstellung des Schlüssels habe ich den öffentlichen Schlüssel (id_rsa.pub) zu meinem ``GitHub-Konto - Settings - unter SSH and GPG keys hinzugefügt.
+Achtung: Der Dienst „Openssh“ auf Ihrem Computer muss „gestartet“ sein.
 
 ## 4. Lokales Klonen und Konfigurieren von Git
 
@@ -32,6 +37,12 @@ git config user.email "deine_email@beispiel.com"``
 -Eine neue Datei main.py hinzugefügt und den ersten Commit durchgeführt:
 ``git add main.py
 git commit -m "Initialer Commit"``
+
+Achtung: Während des Klonvorgangs habe ich ein Fehler erhalten: Um diesen Fehler zu beheben, musste ich eine ``.ssh/Config-Datei`` erstellen. Diese Datei enthielt den Verbindungspfad.
+``Hosten Sie github.com
+ Hostname github.com
+ Gehe zu Benutzer
+ IdentityFile C:/Users/Nutzer/.ssh/id_rsa``
 
 ## 5. Erstellen des Feature-Branches
 
